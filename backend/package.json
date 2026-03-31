@@ -1,0 +1,45 @@
+{
+  "name": "langfuse-use-case",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/app.ts",
+    "dev": "tsx app.ts",
+    "build": "tsc",
+    "start:prod": "node dist/app.js",
+    "lint": "eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apla/clickhouse": "^1.6.4",
+    "@aws-sdk/client-polly": "^3.738.0",
+    "@clickhouse/client": "^1.10.1",
+    "@google-cloud/speech": "^6.7.0",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "form-data": "^4.0.1",
+    "fs": "^0.0.1-security",
+    "gtts": "^0.2.1",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.82.0",
+    "pg": "^8.13.1",
+    "ref-napi": "^3.0.3",
+    "speech-to-text": "^2.9.1",
+    "tsx": "^4.19.2",
+    "whisper-node": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.12.0",
+    "@types/pg": "^8.11.11",
+    "typescript": "^5.7.3"
+  }
+}
