@@ -12,7 +12,7 @@ const run = async () => {
   const app = express()
 
   app.use(cors({
-    origin: 'http://localhost:3000', // Frontend dev server
+    origin: ['http://localhost:3000', 'http://localhost:3001'], // Frontend dev server
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
     credentials: true, // Allow cookies and credentials
   }))
