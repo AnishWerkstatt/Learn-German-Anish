@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8002';
+const API_BASE_URL = 'http://localhost:5000';
 
 export const startConversationWithAudio = async (scenarioName, audioFile) => {
   try {
