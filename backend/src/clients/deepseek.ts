@@ -18,7 +18,7 @@ export class DeepseekClient {
 		try {
 			const response = await this.client.chat.completions.create({
 				messages,
-				model: "deepseek/deepseek-chat:free",
+				model: "deepseek/deepseek-r1:free",
 				temperature: 0.7,
 				max_tokens: 100
 			})
