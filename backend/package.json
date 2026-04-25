@@ -16,7 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "@apla/clickhouse": "^1.6.4",
-    "@aws-sdk/client-polly": "^3.738.0",
     "@clickhouse/client": "^1.10.1",
     "@google-cloud/speech": "^6.7.0",
     "axios": "^1.7.9",
