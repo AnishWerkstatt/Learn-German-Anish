@@ -1,8 +1,13 @@
-import { DeepseekClient } from "./clients/deepseek"
-import { GTTSClient } from "./clients/gTTS"
+import { GeminiClient } from './clients/gemini'
+import { GTTSClient } from './clients/gTTS'
+
+export interface Message {
+  role: 'user' | 'assistant' | 'system'
+  content: string
+}
 
 export interface Clients {
-  deepseek: DeepseekClient
+  gemini: GeminiClient
   gTTS: GTTSClient
 }
 

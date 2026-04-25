@@ -1,14 +1,14 @@
-import { DeepseekClient } from "../clients/deepseek"
-import { GTTSClient } from "../clients/gTTS"
-import { Clients } from "../types"
+import { GeminiClient } from '../clients/gemini'
+import { GTTSClient } from '../clients/gTTS'
+import { Clients } from '../types'
 
 export async function createResources(): Promise<Clients> {
 
-  const deepseekClient = new DeepseekClient()
+  const geminiClient = new GeminiClient()
   const gttsClient = new GTTSClient()
 
   return {
-    deepseek: deepseekClient,
+    gemini: geminiClient,
     gTTS: gttsClient
   }
 }

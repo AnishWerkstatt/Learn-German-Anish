@@ -1,6 +1,5 @@
 import { ScenarioFactory } from '../scenarios/ScenarioFactory'
-import { ChatCompletionMessageParam } from 'openai/resources'
-import { Clients, ScenarioStates } from '../types'
+import { Clients, Message, ScenarioStates } from '../types'
 import { TranslationService } from './TranslationService'
 
 export class ConversationService {
@@ -12,27 +11,28 @@ export class ConversationService {
     this.translationService = new TranslationService(clients)
   }
 
-  public async converse(scenario: string, messages: ChatCompletionMessageParam[]) {
+  public async converse(scenario: string, messages: Message[]) {
     const { text } = await this.conversationText(scenario, messages)
     const audioFilePath = await this.clients.gTTS.convertTextToAudio(text)
     const translation = await this.translationService.translateToEnglish(text)
     return { text, translation, audioFilePath }
   }
 
-  private conversationText = async (scenario: string, messages: ChatCompletionMessageParam[]) => {
+  private conversationText = async (scenario: string, messages: Message[]) => {
     const scenarioInstance = ScenarioFactory.createScenario(scenario)
     const isConversationNew = messages.length === 0
     const state = isConversationNew ? ScenarioStates.START : ScenarioStates.CONTINUE
 
     const systemPrompt = scenarioInstance.getSystemPrompt(state)
-    const systemMessage: ChatCompletionMessageParam = { role: 'system', content: systemPrompt }
+    const systemMessage: Message = { role: 'system', content: systemPrompt }
 
-    const defaultUserMessage: ChatCompletionMessageParam = { role: 'user', content: 'Hallo!' }
-    const conversationMessages = isConversationNew ? [systemMessage, defaultUserMessage] : [systemMessage, ...messages]
+    const defaultUserMessage: Message = { role: 'user', content: 'Hallo!' }
+    const conversationMessages = isConversationNew
+      ? [systemMessage, defaultUserMessage]
+      : [systemMessage, ...messages]
 
     try {
-      const response = await this.clients.deepseek.completion(conversationMessages)
-      const generatedText = response?.choices[0]?.message?.content || ''
+      const generatedText = await this.clients.gemini.completion(conversationMessages)
       return { text: generatedText }
     } catch (error) {
       throw new Error('Failed to generate response')
